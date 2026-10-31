@@ -1,0 +1,180 @@
+{
+  "info": {
+    "_postman_id": "d4cba89d-3f7b-4e3b-9a4d-0c8a7f6e1a21",
+    "name": "Posyandu Backend API",
+    "description": "Urutan pengujian CRUD peserta: POST, GET all, GET by ID, PUT, DELETE. Jalankan request secara berurutan.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "participantId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. POST - Tambah Peserta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"Nama Peserta Uji\",\n  \"participant_type\": \"balita\",\n  \"nik\": \"3501010101200099\",\n  \"birth_date\": \"2023-02-15\",\n  \"gender\": \"P\",\n  \"address\": \"Desa Sukamaju\",\n  \"phone\": \"081234567899\",\n  \"guardian_name\": \"Nama Orang Tua\",\n  \"notes\": \"Data untuk pengujian API\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/participants",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "participants"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 201 - data berhasil dibuat', function () { pm.response.to.have.status(201); });",
+              "const body = pm.response.json();",
+              "if (body.data && body.data.id) pm.collectionVariables.set('participantId', body.data.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. GET - Semua Peserta",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/participants",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "participants"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200 - daftar peserta tampil', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. GET - Peserta Berdasarkan ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/participants/{{participantId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "participants",
+            "{{participantId}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200 - detail peserta tampil', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. PUT - Update Peserta",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"Nama Peserta Uji - Diperbarui\",\n  \"notes\": \"Data berhasil diperbarui melalui PUT\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/participants/{{participantId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "participants",
+            "{{participantId}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200 - data berhasil diperbarui', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. DELETE - Hapus Peserta",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/api/participants/{{participantId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "participants",
+            "{{participantId}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200 - data berhasil dihapus', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
