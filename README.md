@@ -46,7 +46,6 @@ File SQL ada di `database/schema.sql`. File DBML ada di `database/posyandu.dbml`
 1. Buka pgAdmin atau psql.
 2. Buat database bernama `posyandu_db`.
 3. Jalankan seluruh isi `database/schema.sql` pada database tersebut.
-4. (Opsional) Jalankan `database/seed.sql` untuk memasukkan data contoh.
 
 Contoh menggunakan psql:
 ```bash
@@ -126,43 +125,6 @@ GET semua peserta juga mendukung filter:
    - PUT - Update Peserta
    - DELETE - Hapus Peserta
 4. Request POST otomatis menyimpan ID hasil pembuatan ke collection variable `participantId`, yang digunakan request berikutnya.
-5. Ambil screenshot masing-masing response Postman untuk dimasukkan ke dokumen pengumpulan.
 
-## 8. Membuat Diagram dbdiagram.io
-1. Masuk ke https://dbdiagram.io dan buat diagram baru.
-2. Buka `database/posyandu.dbml`.
-3. Copy seluruh isinya ke editor dbdiagram.io.
-4. Simpan diagram, pilih fitur Share, lalu atur akses agar dapat dilihat publik.
-5. Salin link diagram publik untuk Form Pengumpulan.
-
-Jika ingin mengikuti instruksi PDF secara literal, `database/schema.sql` juga dapat digunakan melalui fitur import SQL PostgreSQL.
-
-## 9. GitHub
-Buat repository publik, lalu push isi folder proyek. Jangan unggah `.env` atau `node_modules`. File `.gitignore` telah disediakan.
-
-```bash
-git init
-git add .
-git commit -m "Initial commit - Posyandu Backend API"
-git branch -M main
-git remote add origin https://github.com/USERNAME/posyandu-backend.git
-git push -u origin main
-```
-
-Ganti `USERNAME` dengan username GitHub milikmu.
-
-## 10. Checklist Sebelum Pengumpulan
-- [ ] Database PostgreSQL berhasil dibuat.
-- [ ] Semua 8 tabel berhasil dibuat.
-- [ ] Relasi 1:1, 1:M, dan M:M terlihat di diagram.
-- [ ] Diagram dbdiagram.io sudah disimpan dan dibagikan secara publik.
-- [ ] Server Express.js berhasil terhubung ke PostgreSQL.
-- [ ] Lima endpoint berhasil diuji di Postman.
-- [ ] Lima screenshot response Postman sudah disiapkan.
-- [ ] `.gitignore` mengecualikan `node_modules` dan `.env`.
-- [ ] Repository GitHub bersifat publik atau ZIP tidak memuat `node_modules` dan `.env`.
-- [ ] Link diagram dan link repository dimasukkan ke Form Pengumpulan.
-
-**Catatan:** Proyek ini merupakan starter project yang disiapkan untuk dijalankan dan diuji di komputer pengguna. Screenshot Postman dan link publik GitHub/dbdiagram harus dibuat setelah pengujian dan publikasi oleh pemilik akun.
 =======
 # Posyandu-Backend
